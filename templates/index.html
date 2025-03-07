@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Security Scanner Pro</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a365d 0%, #3182ce 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-pulse-slow {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+        .threat-level-high {
+            background-color: #FEE2E2;
+            border-left: 4px solid #DC2626;
+            animation: slideIn 0.5s ease-out;
+        }
+        .threat-level-medium {
+            background-color: #FEF3C7;
+            border-left: 4px solid #D97706;
+            animation: slideIn 0.5s ease-out;
+        }
+        .threat-level-low {
+            background-color: #ECFDF5;
+            border-left: 4px solid #059669;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-10px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .scan-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .scan-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+        .scan-button:hover::after {
+            transform: rotate(45deg) translate(50%, 50%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="gradient-bg py-16">
+        <div class="container mx-auto px-4" data-aos="fade-down">
+            <header class="text-center">
+                <div class="flex justify-center mb-6">
+                    <div class="animate-float">
+                        <i class="fas fa-shield-alt text-6xl text-white opacity-90"></i>
+                    </div>
+                </div>
+                <h1 class="text-5xl font-bold text-white mb-4">AI Security Scanner Pro</h1>
+                <p class="text-gray-100 text-xl max-w-2xl mx-auto">Advanced threat detection powered by AI and expert security rules</p>
+            </header>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 -mt-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Features Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg text-center">
+                    <i class="fas fa-robot text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-800">AI-Powered Analysis</h3>
+                    <p class="text-gray-600 text-sm">Advanced machine learning for threat detection</p>
+                </div>
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg text-center">
+                    <i class="fas fa-shield-virus text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-800">Real-time Protection</h3>
+                    <p class="text-gray-600 text-sm">Instant analysis of potential threats</p>
+                </div>
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg text-center">
+                    <i class="fas fa-chart-line text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="font-semibold text-gray-800">Smart Detection</h3>
+                    <p class="text-gray-600 text-sm">Multi-layer security scanning</p>
+                </div>
+            </div>
+
+            <!-- Main Scanner Section -->
+            <div class="bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-2 flex items-center">
+                        <i class="fas fa-search-shield mr-3 text-blue-600"></i>
+                        Analyze Text
+                    </h2>
+                    <p class="text-gray-600">Paste any suspicious text, email, or message to analyze for potential security threats.</p>
+                </div>
+
+                <form id="scanForm" class="space-y-6">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="relative">
+                        <textarea
+                            id="text"
+                            name="text"
+                            rows="6"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 transition-all duration-200"
+                            placeholder="Example: 'Dear user, your account has been compromised. Click here to verify...'"
+                            required
+                        ></textarea>
+                        <div class="absolute top-3 right-3">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                    </div>
+                    <button
+                        type="submit"
+                        class="scan-button w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 font-medium text-lg flex items-center justify-center"
+                    >
+                        <i class="fas fa-shield-check mr-2"></i>
+                        Analyze for Threats
+                    </button>
+                </form>
+
+                <div id="loadingIndicator" class="hidden mt-8">
+                    <div class="flex items-center justify-center space-x-4 p-6 border border-gray-200 rounded-lg bg-gray-50">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                        <span class="text-gray-600 text-lg flex items-center">
+                            <i class="fas fa-shield-alt mr-2 text-blue-600"></i>
+                            Analyzing security threats...
+                        </span>
+                    </div>
+                </div>
+
+                <div id="results" class="hidden mt-8 p-6 rounded-lg transition-all duration-300"></div>
+            </div>
+
+            <!-- Example Section -->
+            <div class="mt-8 bg-white rounded-xl shadow-lg p-8" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                    Test Examples
+                </h3>
+                <div class="space-y-4 text-sm text-gray-600">
+                    <div class="feature-card p-4 rounded-lg border border-gray-200 hover:border-blue-200">
+                        <p class="font-medium text-red-600 mb-2">🚨 High Risk Example:</p>
+                        <p>"URGENT: Your PayPal account has been suspended! Click here to verify: http://paypal-secure-verify.net/login"</p>
+                    </div>
+                    <div class="feature-card p-4 rounded-lg border border-gray-200 hover:border-blue-200">
+                        <p class="font-medium text-yellow-600 mb-2">⚠️ Medium Risk Example:</p>
+                        <p>"Please update ur account details within 24hrs or it will be disabled. Reply with ur information."</p>
+                    </div>
+                    <div class="feature-card p-4 rounded-lg border border-gray-200 hover:border-blue-200">
+                        <p class="font-medium text-green-600 mb-2">✅ Safe Example:</p>
+                        <p>"Hi Sarah, I've reviewed the project timeline and everything looks good. Let's discuss it in tomorrow's meeting."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-16 bg-gray-800 text-gray-300 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2024 AI Security Scanner Pro. Built with advanced security features.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS animations
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        });
+
+        document.getElementById('scanForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const resultsDiv = document.getElementById('results');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            const submitButton = form.querySelector('button[type="submit"]');
+
+            // Disable submit button and show loading
+            submitButton.disabled = true;
+            loadingIndicator.classList.remove('hidden');
+            resultsDiv.classList.add('hidden');
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    body: new FormData(form),
+                });
+                const data = await response.json();
+
+                // Process and display results with animation
+                resultsDiv.innerHTML = marked.parse(data.analysis);
+                resultsDiv.classList.remove('hidden');
+                
+                // Add appropriate styling based on threat level
+                if (data.analysis.toLowerCase().includes('high')) {
+                    resultsDiv.className = 'mt-8 p-6 rounded-lg threat-level-high';
+                } else if (data.analysis.toLowerCase().includes('medium')) {
+                    resultsDiv.className = 'mt-8 p-6 rounded-lg threat-level-medium';
+                } else {
+                    resultsDiv.className = 'mt-8 p-6 rounded-lg threat-level-low';
+                }
+
+                // Smooth scroll to results
+                resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } catch (error) {
+                resultsDiv.innerHTML = '<div class="flex items-center"><i class="fas fa-exclamation-triangle text-red-500 mr-2"></i> An error occurred while analyzing the text.</div>';
+                resultsDiv.className = 'mt-8 p-6 rounded-lg bg-red-50 text-red-700';
+                resultsDiv.classList.remove('hidden');
+            } finally {
+                loadingIndicator.classList.add('hidden');
+                submitButton.disabled = false;
+            }
+        });
+
+        // Add click-to-copy functionality for example texts
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const text = this.querySelector('p:last-child').textContent;
+                document.getElementById('text').value = text;
+                // Smooth scroll to textarea
+                document.getElementById('text').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+    </script>
+</body>
+</html> 
